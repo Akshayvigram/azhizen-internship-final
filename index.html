@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Explore career opportunities at Azhizen. Join our dynamic team and discover your potential in Webflow Development." />
+    
+    <!-- Single favicon link that will be updated via JavaScript -->
+    <link id="favicon" rel="icon" type="image/png" href="/fav-icon-light.png" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+
+    <title>Azhizen Summer Internship 2025</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- ✅ Updated this line from main.jsx to main.tsx -->
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Favicon Theme Switcher Script -->
+    <script>
+      const darkSchemeIcon = "/fav-icon-dark.png";
+      const lightSchemeIcon = "/fav-icon-light.png";
+
+      function updateFavicon() {
+        const favicon = document.getElementById("favicon");
+        const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        favicon.href = isDark ? darkSchemeIcon : lightSchemeIcon;
+      }
+
+      // Set favicon on initial load
+      updateFavicon();
+
+      // Update favicon if the user switches theme
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateFavicon);
+    </script>
+  </body>
+</html>

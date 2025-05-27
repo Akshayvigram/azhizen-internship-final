@@ -1,0 +1,111 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 10%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  .azhizen-container {
+    @apply container max-w-7xl px-4 md:px-6 lg:px-8 mx-auto;
+  }
+
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold font-poppins leading-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold font-poppins leading-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold font-poppins leading-tight;
+  }
+
+  .heading-sm {
+    @apply text-xl md:text-2xl font-semibold font-poppins leading-tight;
+  }
+
+  /* Text gradient effect */
+  .text-gradient {
+    @apply text-transparent bg-clip-text;
+  }
+
+  /* Updated domain card with shadows and borders */
+  .domain-card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-card 
+    hover:shadow-hover transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col h-full;
+  }
+
+  /* Updated primary button with modern styling */
+  .btn-primary {
+    @apply bg-azhizen-darkPurple text-white hover:bg-black 
+    transition-colors duration-300 font-medium px-6 py-3 rounded-md shadow-md;
+  }
+
+  /* Updated secondary button with modern styling */
+  .btn-secondary {
+    @apply bg-azhizen-lavender text-azhizen-darkPurple hover:bg-azhizen-lightPurple 
+    transition-colors duration-300 font-medium px-6 py-3 rounded-md shadow-md;
+  }
+
+  .reveal-on-scroll {
+    @apply opacity-0 translate-y-10 transition-all duration-700;
+  }
+
+  .reveal-on-scroll.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+}
