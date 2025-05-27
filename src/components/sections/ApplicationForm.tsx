@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import FormSteps from '../ui/FormSteps';
 import { useToast } from '@/hooks/use-toast'; 
+import { db } from "../../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 // Domain options from our data - updated to match new domains
 const domainOptions = [
@@ -44,33 +46,30 @@ const ApplicationForm = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const elementsRef = useRef<HTMLDivElement[]>([]);
 
-  // Parse URL parameters if coming from domain details page
   const searchParams = new URLSearchParams(location.search);
-  const preselectedDomain = searchParams.get('domain') || '';
-  const preselectedDuration = searchParams.get('duration') || '';
+  const preselectedDomain = searchParams.get("domain") || "";
+  const preselectedDuration = searchParams.get("duration") || "";
 
-  // Form state
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    collegeName: '',
-    degree: '',
-    yearOfStudy: '',
-    location: '',
+    fullName: "",
+    email: "",
+    phone: "",
+    collegeName: "",
+    degree: "",
+    yearOfStudy: "",
+    location: "",
     domain: preselectedDomain,
     duration: preselectedDuration,
-    preferredMode: '',
-    startDate: '',
-    hasExperience: '',
-    experienceDetails: '',
-    applyingReason: '',
+    preferredMode: "",
+    startDate: "",
+    hasExperience: "",
+    experienceDetails: "",
+    applyingReason: "",
     resume: null as File | null,
-    paymentReferenceId: '',
-    paymentScreenshot: null as File | null
+    paymentReferenceId: "",
+    paymentScreenshot: null as File | null,
   });
 
-  // Form validation state
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -78,7 +77,7 @@ const ApplicationForm = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
+            entry.target.classList.add("revealed");
           }
         });
       },
@@ -87,10 +86,7 @@ const ApplicationForm = () => {
 
     const elements = elementsRef.current;
     elements.forEach((el) => observer.observe(el));
-
-    return () => {
-      elements.forEach((el) => observer.unobserve(el));
-    };
+    return () => elements.forEach((el) => observer.unobserve(el));
   }, []);
 
   const addToRefs = (el: HTMLDivElement) => {
@@ -99,13 +95,15 @@ const ApplicationForm = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
-    // Clear error when field is being edited
     if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
+      setErrors({ ...errors, [name]: "" });
     }
   };
 
@@ -114,45 +112,51 @@ const ApplicationForm = () => {
       const { name } = e.target;
       setFormData({ ...formData, [name]: e.target.files[0] });
       if (errors[name]) {
-        setErrors({ ...errors, [name]: '' });
+        setErrors({ ...errors, [name]: "" });
       }
     }
   };
 
   const validateStep = (step: number) => {
     const newErrors: Record<string, string> = {};
-    
     if (step === 1) {
-      if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required';
+      if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
       if (!formData.email.trim()) {
-        newErrors.email = 'Email is required';
+        newErrors.email = "Email is required";
       } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-        newErrors.email = 'Please enter a valid email';
+        newErrors.email = "Please enter a valid email";
       }
       if (!formData.phone.trim()) {
-        newErrors.phone = 'Phone number is required';
+        newErrors.phone = "Phone number is required";
       } else if (!/^\d{10}$/.test(formData.phone)) {
-        newErrors.phone = 'Please enter a valid 10-digit phone number';
+        newErrors.phone = "Please enter a valid 10-digit phone number";
       }
-      if (!formData.collegeName.trim()) newErrors.collegeName = 'College name is required';
+      if (!formData.collegeName.trim())
+        newErrors.collegeName = "College name is required";
     } else if (step === 2) {
-      if (!formData.degree.trim()) newErrors.degree = 'Degree is required';
-      if (!formData.yearOfStudy) newErrors.yearOfStudy = 'Year of study is required';
-      if (!formData.location.trim()) newErrors.location = 'Location is required';
-      if (!formData.domain) newErrors.domain = 'Please select a domain';
-      if (!formData.duration) newErrors.duration = 'Please select a program duration';
-      if (!formData.preferredMode) newErrors.preferredMode = 'Please select your preferred mode';
-      if (!formData.startDate.trim()) newErrors.startDate = 'Start date is required';
+      if (!formData.degree.trim()) newErrors.degree = "Degree is required";
+      if (!formData.yearOfStudy) newErrors.yearOfStudy = "Year of study is required";
+      if (!formData.location.trim()) newErrors.location = "Location is required";
+      if (!formData.domain) newErrors.domain = "Please select a domain";
+      if (!formData.duration) newErrors.duration = "Please select a program duration";
+      if (!formData.preferredMode) newErrors.preferredMode = "Please select mode";
+      if (!formData.startDate.trim()) newErrors.startDate = "Start date is required";
     } else if (step === 3) {
-      if (!formData.hasExperience) newErrors.hasExperience = 'Please specify if you have experience';
-      if (formData.hasExperience === 'Yes' && !formData.experienceDetails.trim()) {
-        newErrors.experienceDetails = 'Please provide details about your experience';
+      if (!formData.hasExperience) newErrors.hasExperience = "Specify experience";
+      if (
+        formData.hasExperience === "Yes" &&
+        !formData.experienceDetails.trim()
+      ) {
+        newErrors.experienceDetails = "Provide experience details";
       }
-      if (!formData.applyingReason.trim()) newErrors.applyingReason = 'Please share your reason for applying';
-      if (!formData.paymentReferenceId.trim()) newErrors.paymentReferenceId = 'Payment reference ID is required';
-      if (!formData.paymentScreenshot) newErrors.paymentScreenshot = 'Please upload your payment screenshot';
+      if (!formData.applyingReason.trim())
+        newErrors.applyingReason = "Reason is required";
+      if (!formData.paymentReferenceId.trim())
+        newErrors.paymentReferenceId = "Reference ID required";
+      if (!formData.paymentScreenshot)
+        newErrors.paymentScreenshot = "Screenshot required";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -160,40 +164,64 @@ const ApplicationForm = () => {
   const handleNext = () => {
     if (validateStep(currentStep)) {
       setCurrentStep(currentStep + 1);
-      // Clear any existing errors when successfully moving to next step
       setErrors({});
-      // Scroll to top of form
-      if (formRef.current) {
-        formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      formRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handlePrev = () => {
     setCurrentStep(currentStep - 1);
-    // Clear errors when going back
     setErrors({});
-    // Scroll to top of form
-    if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (validateStep(currentStep)) {
-      // In a real application, you would submit the form data to your backend here
-      console.log('Form submitted with data:', formData);
-      
-      // Show success toast
+    if (!validateStep(currentStep)) return;
+
+    try {
+      let resumeBase64 = "";
+      let paymentScreenshotBase64 = "";
+
+      if (formData.resume) {
+        resumeBase64 = await fileToBase64(formData.resume);
+      }
+
+      if (formData.paymentScreenshot) {
+        paymentScreenshotBase64 = await fileToBase64(formData.paymentScreenshot);
+      }
+
+      const submissionData = {
+        ...formData,
+        resume: resumeBase64,
+        paymentScreenshot: paymentScreenshotBase64,
+        timestamp: Timestamp.now(),
+      };
+
+      await addDoc(collection(db, "internship-form"), submissionData);
+
       toast({
         title: "Application Submitted!",
         description: "Your application has been received successfully.",
       });
-      
-      // Navigate to confirmation page
-      navigate('/confirmation');
+
+      navigate("/confirmation");
+    } catch (error) {
+      console.error("Submission Error:", error);
+      toast({
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
