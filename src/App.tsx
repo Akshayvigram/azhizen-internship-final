@@ -9,6 +9,9 @@ import Index from "./pages/Index";
 import Confirmation from "./pages/Confirmation";
 import DomainDetails from "./pages/DomainDetails";
 import NotFound from "./pages/NotFound";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import PaymentSection from "./components/sections/PaymentSection";
 
 // Create FontAwesome script component instead of using useEffect directly in App

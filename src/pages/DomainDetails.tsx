@@ -86,10 +86,10 @@ const domains = [
 
 // Updated pricing data - removing 3 months option
 const pricingOptions = [
-  { duration: "7 days", price: 1000 },
-  { duration: "15 days", price: 2000 },
-  { duration: "1 month", price: 3500 },
-  { duration: "2 months", price: 7000 },
+  { duration: "7 days", price: 999 },
+  { duration: "15 days", price: 1999 },
+  { duration: "1 month", price: 3499 },
+  { duration: "2 months", price: 6999 },
 ];
 
 const DomainDetails = () => {

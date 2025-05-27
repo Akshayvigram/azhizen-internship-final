@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import DomainCard from '../ui/DomainCard';
 
-// Domain data (without prices)
 const domains = [
   {
     title: "Frontend Development",
@@ -36,17 +35,17 @@ const domains = [
   {
     title: "PCB Design and Hardware Prototyping",
     description: "Design printed circuit boards and create hardware prototypes for electronic systems.",
-    iconClass: "fas fa-microchip"
+    iconClass: "fa-solid fa-microchip" // Changed from 'fas fa-microchip'
   },
   {
     title: "AI Hardware",
     description: "Design specialized hardware for artificial intelligence and machine learning applications.",
-    iconClass: "fa-solid fa-cpu"
+    iconClass: "fa-solid fa-microchip" // Changed from 'fa-cpu' (not in free set)
   },
   {
     title: "Power Electronics and Energy Systems",
     description: "Design and develop efficient power systems and energy management solutions.",
-    iconClass: "fa-solid fa-bolt"
+    iconClass: "fa-solid fa-bolt-lightning" // Changed from 'fa-bolt' for clarity
   },
   {
     title: "Digital Marketing",
