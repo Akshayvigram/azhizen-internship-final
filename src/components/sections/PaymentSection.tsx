@@ -67,19 +67,19 @@ const PaymentSection = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                     <div className="text-center">
                       <div className="font-medium">7 Days</div>
-                      <div className="text-azhizen-purple font-bold">₹999</div>
+                      <div className="text-azhizen-purple font-bold">₹999.00</div>
                     </div>
                     <div className="text-center">
                       <div className="font-medium">15 Days</div>
-                      <div className="text-azhizen-purple font-bold">₹1,999</div>
+                      <div className="text-azhizen-purple font-bold">₹1,999.00</div>
                     </div>
                     <div className="text-center">
                       <div className="font-medium">1 Month</div>
-                      <div className="text-azhizen-purple font-bold">₹3,499</div>
+                      <div className="text-azhizen-purple font-bold">₹3,499.00</div>
                     </div>
                     <div className="text-center">
                       <div className="font-medium">2 Months</div>
-                      <div className="text-azhizen-purple font-bold">₹6,999</div>
+                      <div className="text-azhizen-purple font-bold">₹6,999.00</div>
                     </div>
                   </div>
                 </div>
