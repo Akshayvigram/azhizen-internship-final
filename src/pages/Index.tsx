@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import DomainsSection from "@/components/sections/DomainsSection";
@@ -44,8 +43,29 @@ const Index = () => {
       <footer className="py-8 bg-azhizen-darkPurple text-white">
         <div className="azhizen-container text-center">
           <p>© {new Date().getFullYear()} Azhizen. All rights reserved.</p>
-          <p className="text-sm text-gray-400 mt-2">Summer Internship Program 2025</p>
-        </div>
+           <div className="mt-3 space-x-4">
+      <a
+        href="https://academy.azhizen.com"
+        className="text-azhizen-lightPurple hover:underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Azhizen Academy
+      </a>
+      <span className="text-azhizen-neutralGray">|</span>
+      <a
+        href="https://media.azhizen.com"
+        className="text-azhizen-lightPurple hover:underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+       Azhizen Media
+      </a>
+    </div>
+    <p className="text-sm text-azhizen-neutralGray mt-3">
+      Summer Internship Program 2025
+    </p>
+  </div>
       </footer>
     </>
   );
