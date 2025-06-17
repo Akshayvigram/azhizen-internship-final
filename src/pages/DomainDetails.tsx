@@ -86,10 +86,10 @@ const domains = [
 
 // Updated pricing data - removing 3 months option
 const pricingOptions = [
-  { duration: "7 days", price: 999 },
-  { duration: "15 days", price: 1999 },
-  { duration: "1 month", price: 3499 },
-  { duration: "2 months", price: 6999 },
+  { duration: "7 days", price: 999.00 },
+  { duration: "15 days", price: 1999.00 },
+  { duration: "1 month", price: 3499.00 },
+  { duration: "2 months", price: 6999.00 },
 ];
 
 const DomainDetails = () => {
@@ -210,7 +210,7 @@ const handleApplyWithDuration = (duration) => {
               {pricingOptions.slice(0, 2).map((option, index) => (
                 <div key={index} className="border border-gray-200 rounded-lg p-6">
                   <h3 className="text-lg font-medium mb-2">{option.duration}</h3>
-                  <p className="text-2xl font-bold text-azhizen-darkPurple mb-2">₹{option.price}</p>
+                  <p className="text-2xl font-bold text-azhizen-darkPurple mb-2">₹{option.price.toFixed(2)}</p>
                   <p className="text-sm text-gray-600 mb-4">
                     Full {domain.title} internship program for {option.duration}
                   </p>
@@ -228,7 +228,7 @@ const handleApplyWithDuration = (duration) => {
               {pricingOptions.slice(2).map((option, index) => (
                 <div key={index} className="border border-gray-200 rounded-lg p-6">
                   <h3 className="text-lg font-medium mb-2">{option.duration}</h3>
-                  <p className="text-2xl font-bold text-azhizen-darkPurple mb-2">₹{option.price}</p>
+                  <p className="text-2xl font-bold text-azhizen-darkPurple mb-2">₹{option.price.toFixed(2)}</p>
                   <p className="text-sm text-gray-600 mb-4">
                     Full {domain.title} internship program for {option.duration}
                   </p>
