@@ -1,13 +1,15 @@
+// api/slack_alert.js
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
   const { fullName, email, phone, domain, duration, timestamp, college, department, reason } = req.body;
-  const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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";
+
+  const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/....";
 
   try {
-    const response = await fetch(SLACK_WEBHOOK_URL, {
+    const slackRes = await fetch(SLACK_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
