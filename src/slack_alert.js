@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"; 
+const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"; 
 
 app.post("/slack-alert", async (req, res) => {
   const { fullName, email, phone, domain, duration, timestamp, college, department, reason } = req.body;
