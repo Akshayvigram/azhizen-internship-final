@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const { fullName, email, phone, domain, duration } = req.body;
+  const { fullName, email, phone, domain, duration, timestamp, college, department, reason } = req.body;
   const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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";
 
   try {
@@ -21,10 +21,10 @@ export default async function handler(req, res) {
               { title: "Phone", value: phone, short: true },
               { title: "Domain", value: domain, short: true },
               { title: "Duration", value: duration, short: true },
-              { title: "Timestamp", value: new Date().toLocaleString(), short: true },
-              { title: "College", value: college, short: true},
-              { title: "Department", value: department, short: true},
-              { title: "Reason", value: reason, short: true}
+              { title: "Timestamp", value: timestamp, short: true },
+              { title: "College", value: college, short: true },
+              { title: "Department", value: department, short: true },
+              { title: "Reason", value: reason, short: false }
             ]
           }
         ]
