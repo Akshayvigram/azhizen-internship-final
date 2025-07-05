@@ -3,7 +3,7 @@ import cors from "cors";
 import axios from "axios";
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"; 
