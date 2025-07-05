@@ -210,7 +210,7 @@ const ApplicationForm = () => {
 
       await addDoc(collection(db, "internship-form"), submissionData);
 
-      await fetch("/api/slack_alert", {
+      await fetch("http://18.206.205.136:5000/slack-alert", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

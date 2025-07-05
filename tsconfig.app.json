@@ -26,5 +26,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "api/slack_alert.js", "slack-api-backend/api"]
+  "include": ["src", "api/slack_alert.js", "slack-api-backend/api", "src/slack_alert.js"]
 }
