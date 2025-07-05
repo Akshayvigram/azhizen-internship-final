@@ -4,6 +4,7 @@ import FormSteps from '../ui/FormSteps';
 import { useToast } from '@/hooks/use-toast'; 
 import { db } from "../../firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { time } from 'console';
 
 // Domain options from our data - updated to match new domains
 const domainOptions = [
@@ -208,6 +209,24 @@ const ApplicationForm = () => {
       };
 
       await addDoc(collection(db, "internship-form"), submissionData);
+
+      await fetch("/api/slack-alert", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          domain: formData.domain,
+          duration: formData.duration,
+          timestamp: submissionData.timestamp.toDate().toISOString(),
+          college: formData.collegeName,
+          department: formData.degree,
+          reason: formData.applyingReason,
+        }),
+      });
 
       toast({
         title: "Application Submitted!",
