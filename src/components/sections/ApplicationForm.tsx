@@ -50,6 +50,7 @@ const ApplicationForm = () => {
   const searchParams = new URLSearchParams(location.search);
   const preselectedDomain = searchParams.get("domain") || "";
   const preselectedDuration = searchParams.get("duration") || "";
+  const [submitting, setSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -187,29 +188,30 @@ const ApplicationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateStep(currentStep)) return;
-
+    if (!validateStep(currentStep) || submitting) return;
+  
+    setSubmitting(true); // 🚫 Disable further submissions
     try {
       let resumeBase64 = "";
       let paymentScreenshotBase64 = "";
-
+  
       if (formData.resume) {
         resumeBase64 = await fileToBase64(formData.resume);
       }
-
+  
       if (formData.paymentScreenshot) {
         paymentScreenshotBase64 = await fileToBase64(formData.paymentScreenshot);
       }
-
+  
       const submissionData = {
         ...formData,
         resume: resumeBase64,
         paymentScreenshot: paymentScreenshotBase64,
         timestamp: Timestamp.now(),
       };
-
+  
       await addDoc(collection(db, "internship-form"), submissionData);
-
+  
       await fetch("https://azhizen-internship-final.onrender.com/slack-alert", {
         method: "POST",
         headers: {
@@ -227,12 +229,12 @@ const ApplicationForm = () => {
           reason: formData.applyingReason,
         }),
       });
-
+  
       toast({
         title: "Application Submitted!",
         description: "Your application has been received successfully.",
       });
-
+  
       navigate("/confirmation");
     } catch (error) {
       console.error("Submission Error:", error);
@@ -241,6 +243,8 @@ const ApplicationForm = () => {
         description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setSubmitting(false); // ✅ Reset so they can retry
     }
   };
 
@@ -717,8 +721,9 @@ const ApplicationForm = () => {
                   <button
                     type="submit"
                     className="btn-primary"
+                    disabled={submitting}
                   >
-                    Submit Application
+                    {submitting ? "Submitting..." : "Submit Application"}
                   </button>
                 )}
               </div>
