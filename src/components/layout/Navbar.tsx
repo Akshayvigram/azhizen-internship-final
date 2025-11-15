@@ -55,12 +55,14 @@ const Navbar = () => {
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="space-x-1">
             <NavigationMenuItem>
-              <RouterLink 
-                to="/" 
-                className="font-medium px-4 py-2 rounded-md text-azhizen-darkPurple hover:bg-azhizen-lavender/50 hover:text-azhizen-purple transition-all cursor-pointer"
-              >
+                <button 
+                onClick={()=> handleNavigation('home')}
+                className="font-medium px-4 py-2 rounded-md text-azhizen-darkPurple hover:bg-azhizen-lavender/50 hover:text-azhizen-purple transition-all cursor-pointer">
+              
                 Home
-              </RouterLink>
+
+                </button>
+             
             </NavigationMenuItem>
             
             <NavigationMenuItem>
@@ -74,7 +76,7 @@ const Navbar = () => {
             
             <NavigationMenuItem>
               <button
-                onClick={() => handleNavigation('payment')}
+                onClick={() => handleNavigation('pricing')}
                 className="font-medium px-4 py-2 rounded-md text-azhizen-darkPurple hover:bg-azhizen-lavender/50 hover:text-azhizen-purple transition-all cursor-pointer"
               >
                 Pricing
@@ -87,7 +89,7 @@ const Navbar = () => {
                 className="btn-primary flex items-center gap-1"
               >
                 Join Program
-                <ChevronDown className="w-4 h-4" />
+                {/* <ChevronDown className="w-4 h-4" /> */}
               </button>
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -105,13 +107,23 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-md px-4 py-5 border-t border-gray-100 animate-fade-in-up">
           <nav className="flex flex-col space-y-4">
-            <RouterLink 
+            {/* <RouterLink 
               to="/" 
               className="font-medium px-4 py-2 rounded-md text-azhizen-darkPurple hover:bg-azhizen-lavender/50 hover:text-azhizen-purple transition-colors cursor-pointer"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
-            </RouterLink>
+            </RouterLink> */}
+
+            <button 
+              onClick={() => handleNavigation('home')}
+              className="text-left font-medium px-4 py-2 rounded-md text-azhizen-darkPurple hover:bg-azhizen-lavender/50 hover:text-azhizen-purple transition-colors cursor-pointer"
+            >
+              Home
+            </button>
+
+
+
             <button 
               onClick={() => handleNavigation('domains')}
               className="text-left font-medium px-4 py-2 rounded-md text-azhizen-darkPurple hover:bg-azhizen-lavender/50 hover:text-azhizen-purple transition-colors cursor-pointer"
@@ -119,7 +131,7 @@ const Navbar = () => {
               Domains
             </button>
             <button 
-              onClick={() => handleNavigation('payment')}
+              onClick={() => handleNavigation('pricing')}
               className="text-left font-medium px-4 py-2 rounded-md text-azhizen-darkPurple hover:bg-azhizen-lavender/50 hover:text-azhizen-purple transition-colors cursor-pointer"
             >
               Payment

@@ -32,7 +32,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="pt-24 pb-16 bg-gradient-to-br from-azhizen-purple/40 via-azhizen-lavender/20 to-white">
+    <section id='home' className="pt-24 pb-16 bg-gradient-to-br from-azhizen-purple/40 via-azhizen-lavender/20 to-white">
       <div className="azhizen-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div ref={addToRefs} className="reveal-on-scroll">
