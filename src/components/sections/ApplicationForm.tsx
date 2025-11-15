@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import FormSteps from '../ui/FormSteps';
-import { useToast } from '@/hooks/use-toast'; 
+import { useToast } from '@/hooks/use-toast';
 import { db } from "../../firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { time } from 'console';
@@ -9,12 +9,12 @@ import { time } from 'console';
 // Domain options from our data - updated to match new domains
 const domainOptions = [
   "Frontend Development",
-  "Web Development", 
+  "Web Development",
   "Full Stack Development",
   "AI Powered Web Dev",
   "Robotics and Automation",
   "Embedded Systems & IoT",
-  "PCB Design and Hardware Prototyping", 
+  "PCB Design and Hardware Prototyping",
   "AI Hardware",
   "Power Electronics and Energy Systems",
   "Digital Marketing",
@@ -189,29 +189,29 @@ const ApplicationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateStep(currentStep) || submitting) return;
-  
+
     setSubmitting(true); // 🚫 Disable further submissions
     try {
       let resumeBase64 = "";
       let paymentScreenshotBase64 = "";
-  
+
       if (formData.resume) {
         resumeBase64 = await fileToBase64(formData.resume);
       }
-  
+
       if (formData.paymentScreenshot) {
         paymentScreenshotBase64 = await fileToBase64(formData.paymentScreenshot);
       }
-  
+
       const submissionData = {
         ...formData,
         resume: resumeBase64,
         paymentScreenshot: paymentScreenshotBase64,
         timestamp: Timestamp.now(),
       };
-  
+
       await addDoc(collection(db, "internship-form"), submissionData);
-  
+
       await fetch("https://azhizen-internship-final.onrender.com/slack-alert", {
         method: "POST",
         headers: {
@@ -229,12 +229,12 @@ const ApplicationForm = () => {
           reason: formData.applyingReason,
         }),
       });
-  
+
       toast({
         title: "Application Submitted!",
         description: "Your application has been received successfully.",
       });
-  
+
       navigate("/confirmation");
     } catch (error) {
       console.error("Submission Error:", error);
@@ -264,13 +264,13 @@ const ApplicationForm = () => {
         <div ref={addToRefs} className="max-w-3xl mx-auto reveal-on-scroll">
           <div className="bg-white rounded-lg shadow-modern border border-gray-200 p-6 md:p-8" ref={formRef}>
             <FormSteps currentStep={currentStep} totalSteps={totalSteps} />
-            
+
             <form onSubmit={handleSubmit}>
               {/* Step 1: Personal Information */}
               {currentStep === 1 && (
                 <div className="space-y-6">
                   <h3 className="text-xl font-semibold mb-6">Personal Information</h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
@@ -282,14 +282,13 @@ const ApplicationForm = () => {
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.fullName ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.fullName ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="Enter your full name"
                       />
                       {errors.fullName && <p className="mt-1 text-sm text-red-500">{errors.fullName}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                         Email ID <span className="text-red-500">*</span>
@@ -300,14 +299,13 @@ const ApplicationForm = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.email ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="Enter your email address"
                       />
                       {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                         Phone Number <span className="text-red-500">*</span>
@@ -318,14 +316,13 @@ const ApplicationForm = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.phone ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="Enter your 10-digit phone number"
                       />
                       {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="collegeName" className="block text-sm font-medium text-gray-700 mb-1">
                         College Name <span className="text-red-500">*</span>
@@ -336,9 +333,8 @@ const ApplicationForm = () => {
                         name="collegeName"
                         value={formData.collegeName}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.collegeName ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.collegeName ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="Enter your college name"
                       />
                       {errors.collegeName && <p className="mt-1 text-sm text-red-500">{errors.collegeName}</p>}
@@ -346,12 +342,12 @@ const ApplicationForm = () => {
                   </div>
                 </div>
               )}
-              
+
               {/* Step 2: Academic & Internship Details */}
               {currentStep === 2 && (
                 <div className="space-y-6">
                   <h3 className="text-xl font-semibold mb-6">Academic & Internship Details</h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="degree" className="block text-sm font-medium text-gray-700 mb-1">
@@ -363,14 +359,13 @@ const ApplicationForm = () => {
                         name="degree"
                         value={formData.degree}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.degree ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.degree ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="e.g., B.Tech, BCA, MCA"
                       />
                       {errors.degree && <p className="mt-1 text-sm text-red-500">{errors.degree}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="yearOfStudy" className="block text-sm font-medium text-gray-700 mb-1">
                         Year of Study <span className="text-red-500">*</span>
@@ -380,9 +375,8 @@ const ApplicationForm = () => {
                         name="yearOfStudy"
                         value={formData.yearOfStudy}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.yearOfStudy ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.yearOfStudy ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       >
                         <option value="">Select year of study</option>
                         {yearOptions.map((year) => (
@@ -391,7 +385,7 @@ const ApplicationForm = () => {
                       </select>
                       {errors.yearOfStudy && <p className="mt-1 text-sm text-red-500">{errors.yearOfStudy}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
                         Location <span className="text-red-500">*</span>
@@ -402,14 +396,13 @@ const ApplicationForm = () => {
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.location ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.location ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="Your city and state"
                       />
                       {errors.location && <p className="mt-1 text-sm text-red-500">{errors.location}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="domain" className="block text-sm font-medium text-gray-700 mb-1">
                         Selected Internship Domain <span className="text-red-500">*</span>
@@ -419,9 +412,8 @@ const ApplicationForm = () => {
                         name="domain"
                         value={formData.domain}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.domain ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.domain ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       >
                         <option value="">Select domain</option>
                         {domainOptions.map(domain => (
@@ -430,7 +422,7 @@ const ApplicationForm = () => {
                       </select>
                       {errors.domain && <p className="mt-1 text-sm text-red-500">{errors.domain}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="duration" className="block text-sm font-medium text-gray-700 mb-1">
                         Program Duration <span className="text-red-500">*</span>
@@ -440,9 +432,8 @@ const ApplicationForm = () => {
                         name="duration"
                         value={formData.duration}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.duration ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.duration ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       >
                         <option value="">Select duration</option>
                         {durationOptions.map(duration => (
@@ -451,7 +442,7 @@ const ApplicationForm = () => {
                       </select>
                       {errors.duration && <p className="mt-1 text-sm text-red-500">{errors.duration}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="preferredMode" className="block text-sm font-medium text-gray-700 mb-1">
                         Preferred Mode <span className="text-red-500">*</span>
@@ -461,9 +452,8 @@ const ApplicationForm = () => {
                         name="preferredMode"
                         value={formData.preferredMode}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.preferredMode ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.preferredMode ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       >
                         <option value="">Select mode</option>
                         <option value="Online">Online</option>
@@ -472,31 +462,64 @@ const ApplicationForm = () => {
                       </select>
                       {errors.preferredMode && <p className="mt-1 text-sm text-red-500">{errors.preferredMode}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-1">
                         Availability Start Date <span className="text-red-500">*</span>
                       </label>
-                      <input
+                      {/* <input
                         type="date"
                         id="startDate"
                         name="startDate"
                         value={formData.startDate}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${
                           errors.startDate ? 'border-red-500' : 'border-gray-300'
                         }`}
                       />
-                      {errors.startDate && <p className="mt-1 text-sm text-red-500">{errors.startDate}</p>}
+                      {errors.startDate && <p className="mt-1 text-sm text-red-500">{errors.startDate}</p>} */}
+
+                      <div className="relative">
+                        <input
+                          type="date"
+                          id="startDate"
+                          name="startDate"
+                          value={formData.startDate}
+                          onChange={handleChange}
+                          className={`w-full px-4 py-2 bg-transparent border rounded-md shadow-sm outline-none transition
+      appearance-none
+      focus:ring focus:ring-gray-200 focus:border-gray-400
+      ${errors.startDate ? 'border-red-500' : 'border-gray-300'}
+    `}
+                        />
+
+                        {/* Custom calendar icon */}
+                        <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className="w-5 h-5 text-gray-500"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" />
+                          </svg>
+                        </div>
+
+                        {errors.startDate && (
+                          <p className="mt-1 text-sm text-red-500">{errors.startDate}</p>
+                        )}
+                      </div>
+
                     </div>
-                    
+
                     <div className="md:col-span-2">
                       <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-1">
                         Upload Resume (Optional)
                       </label>
-                      <div className={`border-2 border-dashed rounded-md p-6 text-center ${
-                        errors.resume ? 'border-red-500' : 'border-gray-300'
-                      }`}>
+                      <div className={`border-2 border-dashed rounded-md p-6 text-center ${errors.resume ? 'border-red-500' : 'border-gray-300'
+                        }`}>
                         <input
                           type="file"
                           id="resume"
@@ -526,12 +549,12 @@ const ApplicationForm = () => {
                   </div>
                 </div>
               )}
-              
+
               {/* Step 3: Experience & Payment */}
               {currentStep === 3 && (
                 <div className="space-y-6">
                   <h3 className="text-xl font-semibold mb-6">Experience & Payment</h3>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -546,7 +569,7 @@ const ApplicationForm = () => {
                             value="Yes"
                             checked={formData.hasExperience === 'Yes'}
                             onChange={handleChange}
-                            className="mr-2"
+                            className="mr-2 accent-blue-600"
                           />
                           <label htmlFor="experienceYes">Yes</label>
                         </div>
@@ -558,14 +581,14 @@ const ApplicationForm = () => {
                             value="No"
                             checked={formData.hasExperience === 'No'}
                             onChange={handleChange}
-                            className="mr-2"
+                            className="mr-2 accent-blue-600"
                           />
                           <label htmlFor="experienceNo">No</label>
                         </div>
                       </div>
                       {errors.hasExperience && <p className="mt-1 text-sm text-red-500">{errors.hasExperience}</p>}
                     </div>
-                    
+
                     {formData.hasExperience === 'Yes' && (
                       <div>
                         <label htmlFor="experienceDetails" className="block text-sm font-medium text-gray-700 mb-1">
@@ -577,15 +600,14 @@ const ApplicationForm = () => {
                           value={formData.experienceDetails}
                           onChange={handleChange}
                           rows={3}
-                          className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                            errors.experienceDetails ? 'border-red-500' : 'border-gray-300'
-                          }`}
+                          className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.experienceDetails ? 'border-red-500' : 'border-gray-300'
+                            }`}
                           placeholder="Briefly describe your experience in this domain"
                         />
                         {errors.experienceDetails && <p className="mt-1 text-sm text-red-500">{errors.experienceDetails}</p>}
                       </div>
                     )}
-                    
+
                     <div>
                       <label htmlFor="applyingReason" className="block text-sm font-medium text-gray-700 mb-1">
                         Why are you applying? <span className="text-red-500">*</span>
@@ -596,28 +618,27 @@ const ApplicationForm = () => {
                         value={formData.applyingReason}
                         onChange={handleChange}
                         rows={4}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.applyingReason ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.applyingReason ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="Share your motivation for applying to this internship"
                       />
                       {errors.applyingReason && <p className="mt-1 text-sm text-red-500">{errors.applyingReason}</p>}
                     </div>
-                    
+
                     {/* Payment QR Code and UPI ID Section */}
                     <div className="bg-azhizen-lavender/30 rounded-xl p-6 border border-azhizen-lavender">
                       <h4 className="text-lg font-semibold mb-4 text-center">Payment Information</h4>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                         <div className="text-center">
                           <h5 className="font-medium mb-3">Scan QR Code to Pay</h5>
-                          <img 
-                            src="/lovable-uploads/77ee2501-3744-4418-b298-572b6809c0bf.png" 
-                            alt="UPI QR Code for Payment" 
+                          <img
+                            src="/lovable-uploads/77ee2501-3744-4418-b298-572b6809c0bf.png"
+                            alt="UPI QR Code for Payment"
                             className="w-40 h-auto mx-auto"
                           />
                         </div>
-                        
+
                         <div>
                           <h5 className="font-medium mb-3">Payment Details</h5>
                           <div className="space-y-2 text-sm">
@@ -634,7 +655,7 @@ const ApplicationForm = () => {
                               <span className="font-medium">As per selected duration</span>
                             </div>
                           </div>
-                          
+
                           <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                             <p className="text-blue-800 text-xs">
                               💡 After making payment, enter the reference ID and upload screenshot below
@@ -643,7 +664,7 @@ const ApplicationForm = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <label htmlFor="paymentReferenceId" className="block text-sm font-medium text-gray-700 mb-1">
                         Payment Reference ID <span className="text-red-500">*</span>
@@ -654,21 +675,19 @@ const ApplicationForm = () => {
                         name="paymentReferenceId"
                         value={formData.paymentReferenceId}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition ${
-                          errors.paymentReferenceId ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-gray-200 focus:border-gray-400 outline-none transition bg-transparent ${errors.paymentReferenceId ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="Enter your payment reference ID"
                       />
                       {errors.paymentReferenceId && <p className="mt-1 text-sm text-red-500">{errors.paymentReferenceId}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="paymentScreenshot" className="block text-sm font-medium text-gray-700 mb-1">
                         Upload Payment Screenshot <span className="text-red-500">*</span>
                       </label>
-                      <div className={`border-2 border-dashed rounded-md p-6 text-center ${
-                        errors.paymentScreenshot ? 'border-red-500' : 'border-gray-300'
-                      }`}>
+                      <div className={`border-2 border-dashed rounded-md p-6 text-center ${errors.paymentScreenshot ? 'border-red-500' : 'border-gray-300'
+                        }`}>
                         <input
                           type="file"
                           id="paymentScreenshot"
@@ -698,7 +717,7 @@ const ApplicationForm = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="flex justify-between mt-10">
                 {currentStep > 1 && (
                   <button
