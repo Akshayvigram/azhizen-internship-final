@@ -17,8 +17,16 @@ const domains = [
     description: "Master both client and server-side development to build complete, end-to-end applications.",
     iconClass: "fa-solid fa-layer-group"
   },
+
+  /* ✅ UI / UX DESIGN ADDED */
   {
-    title: "AI Powered Web Dev",
+    title: "UI UX Design",
+    description: "Design intuitive, user-centered digital experiences using modern UI/UX principles and tools.",
+    iconClass: "fa-solid fa-pen-nib"
+  },
+
+  {
+    title: "Gen AI",
     description: "Build intelligent web applications using artificial intelligence and machine learning technologies.",
     iconClass: "fa-solid fa-brain"
   },
@@ -35,17 +43,17 @@ const domains = [
   {
     title: "PCB Design and Hardware Prototyping",
     description: "Design printed circuit boards and create hardware prototypes for electronic systems.",
-    iconClass: "fa-solid fa-microchip" // Changed from 'fas fa-microchip'
+    iconClass: "fa-solid fa-microchip"
   },
   {
     title: "AI Hardware",
     description: "Design specialized hardware for artificial intelligence and machine learning applications.",
-    iconClass: "fa-solid fa-microchip" // Changed from 'fa-cpu' (not in free set)
+    iconClass: "fa-solid fa-microchip"
   },
   {
     title: "Power Electronics and Energy Systems",
     description: "Design and develop efficient power systems and energy management solutions.",
-    iconClass: "fa-solid fa-bolt-lightning" // Changed from 'fa-bolt' for clarity
+    iconClass: "fa-solid fa-bolt-lightning"
   },
   {
     title: "Digital Marketing",
@@ -103,8 +111,8 @@ const DomainsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {domains.map((domain, index) => (
-            <div 
-              key={domain.title} 
+            <div
+              key={domain.title}
               ref={addToRefs}
               className="h-full reveal-on-scroll"
               style={{ transitionDelay: `${index * 100}ms` }}
@@ -119,11 +127,18 @@ const DomainsSection = () => {
           ))}
         </div>
 
-        <div ref={addToRefs} className="mt-12 p-6 bg-white rounded-lg border border-gray-200 shadow-modern reveal-on-scroll">
+        <div
+          ref={addToRefs}
+          className="mt-12 p-6 bg-white rounded-lg border border-gray-200 shadow-modern reveal-on-scroll"
+        >
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-4 md:mb-0">
-              <h3 className="text-xl font-semibold mb-2">All internships are paid and offered in Hybrid Mode</h3>
-              <p className="text-gray-600">Choose between In-Office, Online, or Hybrid mode based on your convenience</p>
+              <h3 className="text-xl font-semibold mb-2">
+                All internships are paid and offered in Hybrid Mode
+              </h3>
+              <p className="text-gray-600">
+                Choose between In-Office, Online, or Hybrid mode based on your convenience
+              </p>
             </div>
             <a href="#apply" className="btn-primary whitespace-nowrap">
               Apply Now

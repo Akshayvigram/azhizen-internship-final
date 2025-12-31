@@ -11,7 +11,8 @@ const domainOptions = [
   "Frontend Development",
   "Web Development",
   "Full Stack Development",
-  "AI Powered Web Dev",
+  "UI UX Design",
+  "Gen AI",
   "Robotics and Automation",
   "Embedded Systems & IoT",
   "PCB Design and Hardware Prototyping",
@@ -255,7 +256,7 @@ const ApplicationForm = () => {
           <span className="inline-block px-4 py-2 rounded-full bg-azhizen-lavender text-azhizen-darkPurple font-medium text-sm mb-4 shadow-sm border border-gray-200">
             Join Us
           </span>
-          <h2 className="heading-lg mb-4">Apply for Azhizen Summer Internship</h2>
+          <h2 className="heading-lg mb-4">Apply for Azhizen Internship</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Fill out the application form below to start your journey with us. Make sure to provide accurate information.
           </p>
@@ -633,7 +634,7 @@ const ApplicationForm = () => {
                         <div className="text-center">
                           <h5 className="font-medium mb-3">Scan QR Code to Pay</h5>
                           <img
-                            src="/lovable-uploads/77ee2501-3744-4418-b298-572b6809c0bf.png"
+                            src="/lovable-uploads/77ee2501-3744-4418-b298-572b6809c0bf.jpeg"
                             alt="UPI QR Code for Payment"
                             className="w-40 h-auto mx-auto"
                           />
@@ -644,7 +645,7 @@ const ApplicationForm = () => {
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between">
                               <span className="text-gray-600">UPI ID:</span>
-                              <span className="font-medium">idofbharath-2@okaxis</span>
+                              <span className="font-medium">idofbharath-4@okhdfcbank</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-gray-600">Accepted Apps:</span>

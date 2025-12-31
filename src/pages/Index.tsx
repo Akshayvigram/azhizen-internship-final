@@ -63,7 +63,7 @@ const Index = () => {
       </a>
     </div>
     <p className="text-sm text-azhizen-neutralGray mt-3">
-      Summer Internship Program 2025
+      Internship Program 2026
     </p>
   </div>
       </footer>

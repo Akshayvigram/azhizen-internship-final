@@ -49,7 +49,7 @@ const Navbar = () => {
     >
       <div className="azhizen-container flex justify-between items-center">
         <RouterLink to="/" className="group font-poppins font-bold text-2xl">
-          <img src="/lovable-uploads/2edc367a-e160-4dc6-a27f-ca10733ce63d.png" alt="Azhizen Logo" className="h-8" />
+          <img src="/lovable-uploads/2edc367a-e160-4dc6-a27f-ca10733ce63d.png" alt="Azhizen Logo" className="h-12" />
         </RouterLink>
         
         <NavigationMenu className="hidden md:flex">

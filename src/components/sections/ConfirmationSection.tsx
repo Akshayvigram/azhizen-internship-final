@@ -51,7 +51,7 @@ const ConfirmationSection = () => {
           </h1>
           
           <p className="text-xl text-gray-600 mb-8">
-            Your application for the Azhizen Summer Internship Program 2025 has been successfully submitted.
+            Your application for the Azhizen Internship Program 2026 has been successfully submitted.
             We'll be in touch with you shortly via email with further instructions.
           </p>
           
