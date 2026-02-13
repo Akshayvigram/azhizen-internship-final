@@ -87,16 +87,115 @@ const domains = [
       "Data Processing",
     ],
   },
+  {
+    title: "Robotics and Automation",
+    description:
+      "Design, build, and program robots and automated systems for various applications.",
+    iconClass: "fa-solid fa-robot",
+    longDescription:
+      "Learn to develop robotic systems, automation solutions, and intelligent control mechanisms used in industries such as manufacturing, healthcare, and space exploration.",
+    skills: [
+      "Robot Programming",
+      "Automation Systems",
+      "Control Systems",
+      "Industrial Robotics",
+    ],
+  },
+  {
+    title: "Embedded Systems & IoT",
+    description:
+      "Connect devices to the internet and develop smart solutions for the connected world.",
+    iconClass: "fa-solid fa-microchip",
+    longDescription:
+      "Build embedded hardware and IoT-enabled systems that communicate over networks, enabling smart homes, smart cities, and intelligent industrial applications.",
+    skills: [
+      "Microcontrollers",
+      "IoT Development",
+      "Sensor Integration",
+      "Firmware Programming",
+    ],
+  },
+  {
+    title: "PCB Design and Hardware Prototyping",
+    description:
+      "Design printed circuit boards and create hardware prototypes for electronic systems.",
+    iconClass: "fa-solid fa-circuit-board",
+    longDescription:
+      "Master PCB layout design, schematic creation, and hardware prototyping to develop reliable and efficient electronic systems for real-world applications.",
+    skills: [
+      "PCB Layout Design",
+      "Circuit Design",
+      "Hardware Testing",
+      "Electronic Prototyping",
+    ],
+  },
+  {
+    title: "AI Hardware",
+    description:
+      "Design specialized hardware for artificial intelligence and machine learning applications.",
+    iconClass: "fa-solid fa-memory",
+    longDescription:
+      "Explore the development of AI accelerators, edge AI devices, and optimized hardware architectures for high-performance machine learning workloads.",
+    skills: [
+      "AI Accelerators",
+      "Edge Computing",
+      "Hardware Optimization",
+      "FPGA Development",
+    ],
+  },
+  {
+    title: "Power Electronics and Energy Systems",
+    description:
+      "Design and develop efficient power systems and energy management solutions.",
+    iconClass: "fa-solid fa-bolt",
+    longDescription:
+      "Learn to design inverters, converters, renewable energy systems, and smart energy management solutions for sustainable power applications.",
+    skills: [
+      "Power Converters",
+      "Renewable Energy Systems",
+      "Energy Management",
+      "Electrical System Design",
+    ],
+  },
+  {
+    title: "Digital Marketing",
+    description:
+      "Learn strategies to promote brands and products in the digital landscape to reach target audiences.",
+    iconClass: "fa-solid fa-chart-line",
+    longDescription:
+      "Develop expertise in online marketing strategies including SEO, social media marketing, paid advertising, and analytics to grow businesses digitally.",
+    skills: [
+      "SEO",
+      "Social Media Marketing",
+      "Content Strategy",
+      "Digital Analytics",
+    ],
+  },
+  {
+    title: "Research and Development",
+    description:
+      "Engage in cutting-edge research and develop innovative solutions to complex problems.",
+    iconClass: "fa-solid fa-flask",
+    longDescription:
+      "Participate in advanced research initiatives, innovation projects, and technology development to solve real-world engineering and scientific challenges.",
+    skills: [
+      "Problem Solving",
+      "Innovation Strategy",
+      "Technical Research",
+      "Prototype Development",
+    ],
+  },
+
 ];
 
 /* =========================
    PRICING
 ========================= */
 const pricingOptions = [
-  { duration: "7 days", price: 999 },
-  { duration: "15 days", price: 1999 },
-  { duration: "1 month", price: 3499 },
-  { duration: "2 months", price: 6999 },
+  { duration: "7 days", price: "999" },
+  { duration: "15 days", price: "1,999" },
+  { duration: "1 month", price: "2,499" },
+  { duration: "2 months", price: "3,999" },
 ];
 
 const DomainDetails = () => {

@@ -75,11 +75,11 @@ const PaymentSection = () => {
                     </div>
                     <div className="text-center">
                       <div className="font-medium">1 Month</div>
-                      <div className="text-azhizen-purple font-bold">₹3,499.00</div>
+                      <div className="text-azhizen-purple font-bold">₹2,499.00</div>
                     </div>
                     <div className="text-center">
                       <div className="font-medium">2 Months</div>
-                      <div className="text-azhizen-purple font-bold">₹6,999.00</div>
+                      <div className="text-azhizen-purple font-bold">₹3,999.00</div>
                     </div>
                   </div>
                 </div>
