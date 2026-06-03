@@ -5,6 +5,14 @@ import Navbar from "@/components/layout/Navbar";
 /* =========================
    DOMAINS DATA
 ========================= */
+interface Domain {
+  title: string;
+  description: string;
+  iconClass: string;
+  longDescription: string;
+  skills: string[];
+}
+
 const domains = [
   {
     title: "Frontend Development",
@@ -172,20 +180,73 @@ const domains = [
     ],
   },
   {
-    title: "Research and Development",
-    description:
-      "Engage in cutting-edge research and develop innovative solutions to complex problems.",
-    iconClass: "fa-solid fa-flask",
-    longDescription:
-      "Participate in advanced research initiatives, innovation projects, and technology development to solve real-world engineering and scientific challenges.",
-    skills: [
-      "Problem Solving",
-      "Innovation Strategy",
-      "Technical Research",
-      "Prototype Development",
-    ],
-  },
 
+  title: "Production Operations Intern",
+  description:
+    "Gain practical exposure to production processes and operational excellence in a manufacturing environment.",
+  iconClass: "fa-solid fa-industry",
+  longDescription:
+    "Work closely with production teams to understand manufacturing workflows, production planning, quality control, process optimization, and operational efficiency. Learn how large-scale production systems are managed and improved.",
+  skills: [
+    "Production Planning",
+    "Process Optimization",
+    "Quality Control",
+    "Operational Efficiency",
+    "Manufacturing Processes",
+    "Team Coordination"
+  ]
+},
+
+{
+  title: "Inventory & Logistics Intern",
+  description:
+    "Learn inventory management, warehouse operations, and supply chain logistics.",
+  iconClass: "fa-solid fa-boxes-stacked",
+  longDescription:
+    "Assist in inventory tracking, warehouse management, logistics planning, stock control, procurement coordination, and supply chain operations. Gain practical knowledge of how goods move efficiently through business operations.",
+  skills: [
+    "Inventory Management",
+    "Supply Chain Management",
+    "Warehouse Operations",
+    "Logistics Planning",
+    "Stock Control",
+    "Procurement Coordination"
+  ]
+},
+
+{
+  title: ".ERP & Production Data Intern",
+  description:
+    "Work with ERP systems and production data to support business decision-making.",
+  iconClass: "fa-solid fa-chart-line",
+  longDescription:
+    "Gain hands-on experience with ERP platforms, production reporting, business analytics, data management, and process monitoring. Learn how organizations use data to improve operational performance and efficiency.",
+  skills: [
+    "ERP Systems",
+    "Data Analysis",
+    "Production Reporting",
+    "Business Analytics",
+    "Process Monitoring",
+    "Microsoft Excel"
+  ]
+},
+
+{
+  title: "Accounting & Costing Intern",
+  description:
+    "Develop accounting and cost management skills through real business operations.",
+  iconClass: "fa-solid fa-calculator",
+  longDescription:
+    "Support accounting activities including cost analysis, budgeting, financial reporting, expense tracking, and profitability assessment. Learn practical financial management techniques used in organizations.",
+  skills: [
+    "Accounting Principles",
+    "Cost Analysis",
+    "Budgeting",
+    "Financial Reporting",
+    "Expense Management",
+    "MS Excel"
+  ]
+},
 ];
 
 /* =========================
