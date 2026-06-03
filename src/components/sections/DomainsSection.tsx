@@ -64,7 +64,30 @@ const domains = [
     title: "Research and Development",
     description: "Engage in cutting-edge research and develop innovative solutions to complex problems.",
     iconClass: "fa-solid fa-flask"
-  }
+  },
+  {
+  title: "Production Operations Intern",
+  description: "Gain hands-on experience in production planning, manufacturing processes, and operational efficiency management.",
+  iconClass: "fa-solid fa-industry"
+},
+
+{
+  title: "Inventory & Logistics Intern",
+  description: "Learn inventory control, warehouse operations, supply chain coordination, and logistics management.",
+  iconClass: "fa-solid fa-boxes-stacked"
+},
+
+{
+  title: ".ERP & Production Data Intern",
+  description: "Work with ERP systems, production reporting, data analysis, and business process management.",
+  iconClass: "fa-solid fa-chart-line"
+},
+
+{
+  title: "Accounting & Costing Intern",
+  description: "Develop practical skills in accounting, cost analysis, budgeting, and financial reporting.",
+  iconClass: "fa-solid fa-calculator"
+},
 ];
 
 const DomainsSection = () => {
