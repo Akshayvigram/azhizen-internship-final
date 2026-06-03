@@ -4,7 +4,7 @@ import FormSteps from '../ui/FormSteps';
 import { useToast } from '@/hooks/use-toast';
 import { db } from "../../firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { time } from 'console';
+// import { time } from 'console';
 
 // Domain options from our data - updated to match new domains
 const domainOptions = [
@@ -19,7 +19,11 @@ const domainOptions = [
   "AI Hardware",
   "Power Electronics and Energy Systems",
   "Digital Marketing",
-  "Research and Development"
+  "Research and Development",
+  "Production Operation",
+  "Inventory & Logistics",
+  ".ERP & Production Data",
+  "Accounting & Costing"
 ];
 
 // Duration options
